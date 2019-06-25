@@ -4,12 +4,13 @@ $( document ).ready(function() {
 
 
 
+
+$('#other-title').hide();
+
 /*** 
  Create text field using jQuery
  place as the last element in field set by appendTo method
 ***/
-$('#other-title').hide();
-
 // $('<input/>')
 //     .attr({ type: 'text', id: 'other-title', placeholder: 'Your Job Role'})
 //     .appendTo('fieldset')
@@ -28,3 +29,7 @@ $('#title').on('click change', function(){
         $("#other-title").hide();
     }
 });
+
+
+//tshirt design should match color
+//$('#color')
