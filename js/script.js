@@ -8,10 +8,12 @@ $( document ).ready(function() {
  Create text field using jQuery
  place as the last element in field set by appendTo method
 ***/
-$('<input/>')
-    .attr({ type: 'text', id: 'other-title', placeholder: 'Your Job Role'})
-    .appendTo('fieldset')
-    .hide();
+$('#other-title').hide();
+
+// $('<input/>')
+//     .attr({ type: 'text', id: 'other-title', placeholder: 'Your Job Role'})
+//     .appendTo('fieldset')
+//     .hide();
 
 
 $('#title').on('click change', function(){
