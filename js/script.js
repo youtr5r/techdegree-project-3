@@ -25,7 +25,7 @@ $('#design').find('option:first').hide();
 
 // $('#design > option:first').hide();
 
-$('#color option:selected').prepend().text("Please Select a T-shirt Theme");
+$('#color').prepend('<option value="foo" selected="selected">"Please Select a T-shirt Theme"</option>');
 $('#color option').hide();
 
 // const jsPuns = $('#color option:contains(" + JS Puns + ")').val();
