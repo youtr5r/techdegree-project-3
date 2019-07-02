@@ -26,7 +26,7 @@ $('#color option').hide();
 //Only show color options that match the theme name
 //I did this by selecting it by text using literals
 $('#design').on('change',function (){
-
+    
     let selectTheme = $('#design option:selected').val();
     
     if(selectTheme == 'js puns') {
@@ -43,6 +43,9 @@ $('#design').on('change',function (){
         $('#color option').hide();
     }
  });
+
+ //create variables to reference in my checked functions below
+ //Using the name attribute I could distingusih which checkbox I am referencing.
  var mainConf = $('input[name="all"]');
  var jsFrameWork = $('input[name="js-frameworks"]');
  var javaScriptLib = $('input[name="js-libs"]');
@@ -90,7 +93,7 @@ $('#design').on('change',function (){
          javaScriptLib.parent().removeClass("disabled")
      }
  });
-     //calculates total cost
+     //calculates total cost by adding and subtracting based on the change event
  var totalCost = 0;
  
  $('.activities').append('<div id="total"></div>');
@@ -194,11 +197,11 @@ $('#payment').on('change',function (){
      }
  });
       //created variables to validate input with RegEx
-     var emailAddress = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+     var emailAddress = /[A-Za-z0-9\._%+!$&*=^|~#%'`?{}/\-]+@([A-Za-z0-9\-]+\.){1,}([A-Za-z]{2,16})/;
      var creditCard = /\b\d{4}(| |-)\d{4}\1\d{4}\1\d{4}\b/g;
      var zipCode = /^\d{5}(?:[-\s]\d{4})?$/;
      var errorMessage ="";
-     
+     //intially hide error message. When input is not valid display an error message that is specific to the field
      $('form').prepend('<p id="error-message"></p>');
      $('#error-message').hide();
      $('form').submit(function (e){
