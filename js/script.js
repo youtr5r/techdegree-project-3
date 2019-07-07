@@ -197,10 +197,17 @@ $('#payment').on('change',function (){
      }
  });
       //created variables to validate input with RegEx
+<<<<<<< HEAD
       var emailAddress = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
       var creditCard = /\b\d{4}(| |-)\d{4}\1\d{4}\1\d{4}\b/g;
       var zipCode = /^\d{5}(?:[-\s]\d{4})?$/;
       var errorMessage ="";
+=======
+     var emailAddress = /[A-Za-z0-9\._%+!$&*=^|~#%'`?{}/\-]+@([A-Za-z0-9\-]+\.){1,}([A-Za-z]{2,16})/;
+     var creditCard = /\b\d{4}(| |-)\d{4}\1\d{4}\1\d{4}\b/g;
+     var zipCode = /^\d{5}(?:[-\s]\d{4})?$/;
+     var errorMessage ="";
+>>>>>>> 82a7972819562e4d7243f669ab4532096a526360
      //intially hide error message. When input is not valid display an error message that is specific to the field
      $('form').prepend('<p id="error-message"></p>');
      $('#error-message').hide();
@@ -210,7 +217,11 @@ $('#payment').on('change',function (){
          if ( $('#name').val() === "" ) {
              console.log("Error!");
              $("html, body").animate({scrollTop: 0}, "slow");
+<<<<<<< HEAD
              errorMessage = "<h2>Error!</h2> Please fill out the name field.";
+=======
+             errorMessage = "<h2>Error!</h2> Please fill out all required fields.";
+>>>>>>> 82a7972819562e4d7243f669ab4532096a526360
              $('#name').addClass('error');
              $('#name').focus();
          } else if ( !emailAddress.test($('#mail').val()) ) {
