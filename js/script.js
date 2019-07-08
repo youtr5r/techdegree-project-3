@@ -226,18 +226,22 @@ $('#payment').on('change',function (){
              $('.activities').focus();
             } else if ( $("#payment").val() === "select_method" && !creditCard.test($("#cc-num").val()) )  {
                 e.preventDefault();
+                $("html, body").animate({scrollTop: 0}, "slow");
                  errorMessage = "<h2>Error!</h2>Please select a payment type.";
                  $("select_method").focus();
          } else if ( $("#payment").val() === "credit card" && !creditCard.test($("#cc-num").val()) )  {
             e.preventDefault();
+            $("html, body").animate({scrollTop: 0}, "slow");
              errorMessage = "<h2>Error!</h2>Enter a valid credit card number.";
              $('#cc-num').focus();
          } else if ( $("#payment").val() === "credit card" && !zipCode.test($("#zip").val()) )  {
             e.preventDefault();
+            $("html, body").animate({scrollTop: 0}, "slow");
              errorMessage = "<h2>Error!</h2>Enter your zip code.";
              $('#zip').focus();
          } else if ( $("#payment").val() === "credit card" && $("#cvv").val().length < 3)  {
             e.preventDefault(); 
+            $("html, body").animate({scrollTop: 0}, "slow");
             errorMessage = "<h2>Error!</h2>Enter a 3 digit CVV";
              $('#cvv').focus();
          } else {
