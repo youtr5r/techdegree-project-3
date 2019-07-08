@@ -198,8 +198,9 @@ $('#payment').on('change',function (){
  });
       //created variables to validate input with RegEx
       var emailAddress = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
-      var creditCard = /\b\d{4}(| |-)\d{4}\1\d{4}\1\d{4}\b/g;
+      var creditCard = /^\d{4}([\s-]*)\d{4}\1\d{4}\1\d{4}$/;
       var zipCode = /^\d{5}(?:[-\s]\d{4})?$/;
+      var cvvNumber = /^[0-9]{3,4}$/;
       var errorMessage ="";
      //intially hide error message. When input is not valid display an error message that is specific to the field
      $('form').prepend('<p id="error-message"></p>');
@@ -208,42 +209,48 @@ $('#payment').on('change',function (){
         
      
          if ( $('#name').val() === "" ) {
-            e.preventDefault(); 
-            console.log("Error!");
-             $("html, body").animate({scrollTop: 0}, "slow");
-             errorMessage = "<h2>Error!</h2> Please fill out the name field.";
-             $('#name').addClass('error');
-             $('#name').focus();
+                e.preventDefault(); 
+                console.log("Error!");
+                $("html, body").animate({scrollTop: 0}, "slow");
+                errorMessage = "<h2>Error!</h2> Please fill out the name field.";
+                $('#name').addClass('error');
+                $('#name').css('border-color', 'red').focus();
          } else if ( !emailAddress.test($('#mail').val()) ) {
-            e.preventDefault();
-             $("html, body").animate({scrollTop: 0}, "slow");
-             errorMessage = "<h2>Error!</h2> Please enter a valid email address.";
-             $('#mail').focus();
+                e.preventDefault();
+                $("html, body").animate({scrollTop: 0}, "slow");
+                errorMessage = "<h2>Error!</h2> Please enter a valid email address.";
+                $('#mail').css('border-color', 'red').focus();
+                $('#name').css('border-color', 'black')
          } else if ( $(".activities > label > input:checked").length === 0 ) {
-            e.preventDefault();
-             $("html, body").animate({scrollTop: 0}, "slow");
-             errorMessage = "<h2>Error!</h2>Please select at least one activity.";
-             $('.activities').focus();
+                e.preventDefault();
+                $("html, body").animate({scrollTop: 0}, "slow");
+                errorMessage = "<h2>Error!</h2>Please select at least one activity.";
+                $('.activities').css('color', 'red').focus();
+                $('#mail').css('border-color', 'black')
             } else if ( $("#payment").val() === "select_method" && !creditCard.test($("#cc-num").val()) )  {
                 e.preventDefault();
                 $("html, body").animate({scrollTop: 0}, "slow");
                  errorMessage = "<h2>Error!</h2>Please select a payment type.";
                  $("select_method").focus();
+                 $("#payment").css('border-color', 'red')
+                 $('.activities').css('color', 'black')
          } else if ( $("#payment").val() === "credit card" && !creditCard.test($("#cc-num").val()) )  {
-            e.preventDefault();
-            $("html, body").animate({scrollTop: 0}, "slow");
-             errorMessage = "<h2>Error!</h2>Enter a valid credit card number.";
-             $('#cc-num').focus();
+                e.preventDefault();
+                $("html, body").animate({scrollTop: 0}, "slow");
+                errorMessage = "<h2>Error!</h2>Enter a valid credit card number.";
+                $('#cc-num').css('border-color', 'red').focus();
          } else if ( $("#payment").val() === "credit card" && !zipCode.test($("#zip").val()) )  {
-            e.preventDefault();
-            $("html, body").animate({scrollTop: 0}, "slow");
-             errorMessage = "<h2>Error!</h2>Enter your zip code.";
-             $('#zip').focus();
-         } else if ( $("#payment").val() === "credit card" && $("#cvv").val().length < 3)  {
-            e.preventDefault(); 
-            $("html, body").animate({scrollTop: 0}, "slow");
-            errorMessage = "<h2>Error!</h2>Enter a 3 digit CVV";
-             $('#cvv').focus();
+                e.preventDefault();
+                $("html, body").animate({scrollTop: 0}, "slow");
+                errorMessage = "<h2>Error!</h2>Enter your zip code.";
+                $('#zip').css('border-color', 'red').focus();
+                $('#cc-num').css('border-color', 'black')
+         } else if ( $("#payment").val() === "credit card" && !cvvNumber.test($("#cvv").val()) ) {
+                e.preventDefault(); 
+                $("html, body").animate({scrollTop: 0}, "slow");
+                errorMessage = "<h2>Error!</h2>Enter a 3 digit CVV";
+                $('#cvv').css('border-color', 'red').focus();
+                $('#zip').css('border-color', 'black');
          } else {
              $("html, body").animate({scrollTop: 0}, "slow");
              errorMessage = "";
@@ -251,6 +258,5 @@ $('#payment').on('change',function (){
               
          } 
          document.getElementById('error-message').innerHTML = errorMessage;
-         $('#error-message').show();
+         $('#error-message').css('color', 'red').show();
      });
-     
