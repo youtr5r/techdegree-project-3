@@ -153,10 +153,10 @@ $('#design').on('change',function (){
  
  
 //This code initially hides paypal and bitcoin paragraphs
-$('#payment').find('option:first').hide();
+$('#payment option:first').hide();
 $('div p:eq(0)').hide();
 $('div p:eq(1)').hide();
-
+$('#payment').val("credit card");
 //When payment type is selected it will show the matching payment info
 $('#payment').on('change',function (){
 
