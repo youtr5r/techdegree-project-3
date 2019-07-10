@@ -200,7 +200,7 @@ $('#payment').on('change',function (){
       var emailAddress = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
       var creditCard = /^\d{4}([\s-]*)\d{4}\1\d{4}\1\d{4}$/;
       var zipCode = /^\d{5}(?:[-\s]\d{4})?$/;
-      var cvvNumber = /^[0-9]{3,4}$/;
+      var cvvNumber = /^[0-9]{3}$/;
       var errorMessage ="";
      //intially hide error message. When input is not valid display an error message that is specific to the field
      $('form').prepend('<p id="error-message"></p>');
