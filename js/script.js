@@ -265,7 +265,7 @@ $('#payment').on('change',function (){
           return true;
         } else {
             $('#zip').removeClass('success').addClass('error');
-            $('#zip').prev().text('Enter a 5 digit zip code').css('color', 'red');
+            $('#zip').prev().text('Invalid zip code').css('color', 'red');
           return false;
         }
       }
@@ -278,7 +278,7 @@ $('#payment').on('change',function (){
           return true;
         } else { 
             $('#cvv').removeClass('success').addClass('error');
-            $('#cvv').prev().text('Enter a 3 digit cvv').css('color', 'red');
+            $('#cvv').prev().text('Invalid cvv number').css('color', 'red');
           return false;  
         }
       }
