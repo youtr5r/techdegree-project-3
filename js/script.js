@@ -2,6 +2,7 @@ $( document ).ready(function() {
     $('#name').focus();  
     
 });
+
 //hide the textfield and make it show only when the other job role is selected
 $('#other-title').hide();
 
@@ -196,67 +197,129 @@ $('#payment').on('change',function (){
          $(this).addClass('success');
      }
  });
-      //created variables to validate input with RegEx
-      var emailAddress = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
-      var creditCard = /^\d{4}([\s-]*)\d{4}\1\d{4}\1\d{4}$/;
-      var zipCode = /^\d{5}(?:[-\s]\d{4})?$/;
-      var cvvNumber = /^[0-9]{3}$/;
-      var errorMessage ="";
-     //intially hide error message. When input is not valid display an error message that is specific to the field
-     $('form').prepend('<p id="error-message"></p>');
-     $('#error-message').hide();
-     $('form').submit(function (e){
-        
+
+      
      
-         if ( $('#name').val() === "" ) {
-                e.preventDefault(); 
-                console.log("Error!");
-                $("html, body").animate({scrollTop: 0}, "slow");
-                errorMessage = "<h2>Error!</h2> Please fill out the name field.";
-                $('#name').addClass('error');
-                $('#name').css('border-color', 'red').focus();
-         } else if ( !emailAddress.test($('#mail').val()) ) {
-                e.preventDefault();
-                $("html, body").animate({scrollTop: 0}, "slow");
-                errorMessage = "<h2>Error!</h2> Please enter a valid email address.";
-                $('#mail').css('border-color', 'red').focus();
-                $('#name').css('border-color', 'black')
-         } else if ( $(".activities > label > input:checked").length === 0 ) {
-                e.preventDefault();
-                $("html, body").animate({scrollTop: 0}, "slow");
-                errorMessage = "<h2>Error!</h2>Please select at least one activity.";
-                $('.activities').css('color', 'red').focus();
-                $('#mail').css('border-color', 'black')
-            } else if ( $("#payment").val() === "select_method" && !creditCard.test($("#cc-num").val()) )  {
-                e.preventDefault();
-                $("html, body").animate({scrollTop: 0}, "slow");
-                 errorMessage = "<h2>Error!</h2>Please select a payment type.";
-                 $("select_method").focus();
-                 $("#payment").css('border-color', 'red')
-                 $('.activities').css('color', 'black')
-         } else if ( $("#payment").val() === "credit card" && !creditCard.test($("#cc-num").val()) )  {
-                e.preventDefault();
-                $("html, body").animate({scrollTop: 0}, "slow");
-                errorMessage = "<h2>Error!</h2>Enter a valid credit card number.";
-                $('#cc-num').css('border-color', 'red').focus();
-         } else if ( $("#payment").val() === "credit card" && !zipCode.test($("#zip").val()) )  {
-                e.preventDefault();
-                $("html, body").animate({scrollTop: 0}, "slow");
-                errorMessage = "<h2>Error!</h2>Enter your zip code.";
-                $('#zip').css('border-color', 'red').focus();
-                $('#cc-num').css('border-color', 'black')
-         } else if ( $("#payment").val() === "credit card" && !cvvNumber.test($("#cvv").val()) ) {
-                e.preventDefault(); 
-                $("html, body").animate({scrollTop: 0}, "slow");
-                errorMessage = "<h2>Error!</h2>Enter a 3 digit CVV";
-                $('#cvv').css('border-color', 'red').focus();
-                $('#zip').css('border-color', 'black');
+      
+      
+      
+     
+      function nameValidation() {
+        let nameRegex = /^([a-zA-Z ]){2,30}$/;
+        if (!nameRegex.test($('#name').val())) {
+            $('#name').removeClass('success').addClass('error');
+         $('#name').prev().text('Name field is required.').css('color', 'red');
+         return false;
          } else {
-             $("html, body").animate({scrollTop: 0}, "slow");
-             errorMessage = "";
-             alert("Success!");
+            $('#name').removeClass('error').addClass('success')
+            $('#name').prev().text('Name:').css('color', '');
+            return true;
+     }
+ }
+ function emailValidation() {
+    
+  
+    // Must be a valid email address
+    let emailAdress = /^[^@]+@[^@.]+\.[a-z]+$/i;
+      
+    if (emailAdress.test($('#mail').val())) {
+      $('#mail').removeClass('error').addClass('success');
+      $('#mail').prev().text('Email:').css('color', '');
+      
+      return true;
+    } else if ($('#mail').val() !== '') { 
+      $('#mail').removeClass('success').addClass('error');
+      $('#mail').prev().text('Email is Invalid').css('color', 'red');
+      
+    return false;
+    } else {
+      $('#mail').removeClass('success').addClass('error');
+      $('#mail').prev().text('Email is Invalid.').css('color', 'red');
+      
+      return false;
+    }
+}
+      
+        
+  function cardValidation(){
+    let creditCard = /^\d{4}([\s-]*)\d{4}\1\d{4}\1\d{4}$/;
+        
+        
+        if (creditCard.test($('#cc-num').val())) {
+            $('#cc-num').removeClass('error').addClass('success');
+            $('#cc-num').prev().text('Card Number:').css('color', '');
+          return true;
+        } else { 
+            $('#cc-num').removeClass('success').addClass('error');
+            $('#cc-num').prev().text('Invalid credit card number').css('color', 'red');
+          return false;
+        }
+      }
+      
+      function zipValidation(){ 
+        let zipCode = /^\d{5}(?:[-\s]\d{4})?$/;
+   
+        if (zipCode.test($('#zip').val())) {
+            $('#zip').removeClass('error').addClass('success');
+            $('#zip').prev().text('Zip Code:').css('color', 'black');
+          return true;
+        } else {
+            $('#zip').removeClass('success').addClass('error');
+            $('#zip').prev().text('Enter a 5 digit zip code').css('color', 'red');
+          return false;
+        }
+      }
+      
+      function cvvValidation(){
+        let cvvNumber = /^[0-9]{3}$/;
+        if (cvvNumber.test($('#cvv').val())) {
+            $('#cvv').removeClass('error').addClass('success');
+            $('#cvv').prev().text('CVV:').css('color', 'black');
+          return true;
+        } else { 
+            $('#cvv').removeClass('success').addClass('error');
+            $('#cvv').prev().text('Enter a 3 digit cvv').css('color', 'red');
+          return false;  
+        }
+      }
+      
+      
+      function activityValidation() {
+          if ($('.activities input:checked').length === 0) {  
+            $('.activities legend').text('Please Select an Activity').css('color', 'red');
+            return false;            
+          } else {
+            $('.activities legend').text('Register for Activities:').css('color', '');
+            return true;
+          }
+      }
+
+    
+      $('form').on('submit', function(e){
+        
+        
+        if ($('#payment').val() === 'credit card') {
+          if(nameValidation() & emailValidation() & activityValidation() & cardValidation() & cvvValidation() & zipValidation()) {
+            alert('Success!');
+            return true;
+          } else {
+            e.preventDefault();
+            $("html, body").animate({scrollTop: 0}, "slow");
+            
+            return false;
+          }
+        }  else {
+            if (nameValidation() & emailValidation() & activityValidation()) {
+              alert('Success!');
+            } else {
+              e.preventDefault();
+              $("html, body").animate({scrollTop: 0}, "slow");
+              //alert('Please fill out all required fields marked in red.');
               
-         } 
-         document.getElementById('error-message').innerHTML = errorMessage;
-         $('#error-message').css('color', 'red').show();
-     });
+            }
+           
+        }
+       
+      }); 
+
+   
