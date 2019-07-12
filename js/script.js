@@ -298,7 +298,7 @@ $('#payment').on('change',function (){
           } else {
             e.preventDefault();
             $("html, body").animate({scrollTop: 0}, "slow");
-            
+            alert('Please fill out all required fields marked in red.');
             return false;
           }
         }  else {
