@@ -165,18 +165,18 @@ $('#payment').on('change',function (){
   
   if(payment == 'paypal') {
       
-      $('div p:eq(1)').show();
+      $('div p:eq(0)').show();
       $('#credit-card').hide();
-      $('div p:eq(2)').hide();
+      $('div p:eq(1)').hide();
 
   } else if(payment == 'bitcoin') { 
-      $('div p:eq(2)').show();
+      $('div p:eq(1)').show();
       $('#credit-card').hide();
-      $('div p:eq(1)').hide();   
+      $('div p:eq(0)').hide();   
   } else {
       $('#credit-card').show();
+      $('div p:eq(0)').hide();
       $('div p:eq(1)').hide();
-      $('div p:eq(2)').hide();
   }
 });
 
@@ -314,5 +314,3 @@ $('#payment').on('change',function (){
         }
        
       }); 
-
-   
