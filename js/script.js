@@ -244,7 +244,7 @@ $('#payment').on('change',function (){
           return true;
         } else { 
             $('#cc-num').removeClass('success').addClass('error');
-            $('#cc-num').prev().text('Invalid credit card number').css('color', 'red');
+            $('#cc-num').prev().text('card number needs to be 13 to 16 digits').css('color', 'red');
           return false;
         }
       }
