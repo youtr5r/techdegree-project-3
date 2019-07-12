@@ -203,7 +203,7 @@ $('#payment').on('change',function (){
       
       
       
-     
+     //Validating Fields and returning true or false to determine which fields are invalid
       function nameValidation() {
         let nameRegex = /^([a-zA-Z ]){2,30}$/;
         if (!nameRegex.test($('#name').val())) {
@@ -294,7 +294,7 @@ $('#payment').on('change',function (){
           }
       }
 
-    
+      //submit event function that will scroll to the top if errors exist
       $('form').on('submit', function(e){
         
         
