@@ -235,7 +235,7 @@ $('#payment').on('change',function (){
 }
            
   function cardValidation(){
-    let creditCard = /^\d{4}([\s-]*)\d{4}\1\d{4}\1\d{4}$/;
+    let creditCard = /^\d{13,16}$/;
         
         
         if (creditCard.test($('#cc-num').val())) {
