@@ -298,7 +298,7 @@ $('#payment').on('change',function (){
           } else {
             e.preventDefault();
             $("html, body").animate({scrollTop: 0}, "slow");
-            alert('Please fill out all required fields marked in red.');
+            $('fieldset legend').first().after().text('Form is incomplete. Please fill out all required fields marked in red.').css('color', 'red');
             return false;
           }
         }  else {
@@ -307,7 +307,9 @@ $('#payment').on('change',function (){
             } else {
               e.preventDefault();
               $("html, body").animate({scrollTop: 0}, "slow");
-              alert('Please fill out all required fields marked in red.');
+              $('fieldset legend').first().after().text('Form is incomplete. Please fill out all required fields marked in red.').css('color', 'red');
+              //alert('Please fill out all required fields marked in red.');
+             
               
             }
            
