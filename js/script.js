@@ -180,7 +180,6 @@ $('#payment').on('change',function (){
   }
 });
 
-
  /***
   Select the following fields by ID
   Use the keyup function to gets the value from a textbox at every keypress
@@ -197,12 +196,7 @@ $('#payment').on('change',function (){
          $(this).addClass('success');
      }
  });
-
-      
-     
-      
-      
-      
+   
      //Validating Fields and returning true or false to determine which fields are invalid
       function nameValidation() {
         let nameRegex = /^([a-zA-Z ]){2,30}$/;
@@ -239,8 +233,7 @@ $('#payment').on('change',function (){
       return false;
     }
 }
-      
-        
+           
   function cardValidation(){
     let creditCard = /^\d{4}([\s-]*)\d{4}\1\d{4}\1\d{4}$/;
         
@@ -314,7 +307,7 @@ $('#payment').on('change',function (){
             } else {
               e.preventDefault();
               $("html, body").animate({scrollTop: 0}, "slow");
-              //alert('Please fill out all required fields marked in red.');
+              alert('Please fill out all required fields marked in red.');
               
             }
            
